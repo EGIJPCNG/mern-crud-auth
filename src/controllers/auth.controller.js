@@ -14,6 +14,9 @@ export const register = async(req,res) => {
     const {email, password, username} = req.body;
     try {
         // hacer encriptacion de la contraseña
+        const userFound = await User.findOne({email})
+        if (userFound) return res.status(400).json(["El correo esta en uso por otro usuario"]);
+
         const passwordHash = await bcrypt.hash(password, 10);
         // crear un nuevo usuario
         const newUser = new User({
