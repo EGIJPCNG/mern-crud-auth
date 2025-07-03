@@ -16,6 +16,7 @@ function RegisterPage() {
         if (isAuthenticated) navigate('/tasks');
     }, [isAuthenticated]);
 
+
     const onSubmit = handleSubmit(async (values) => {
         // // console.log(values);
         // const res = await registerRequest(values)

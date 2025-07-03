@@ -1,19 +1,25 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import { useEffect } from "react";
 
 
 
 function LoginPage() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signin, errors: signinErrors } = useAuth();
+    const { signin, errors: signinErrors, isAuthenticated } = useAuth();
+    const navitate = useNavigate()
 
     const onSubmit = handleSubmit(data => {
         console.log(data);
         signin(data);
         // Aquí puedes hacer la llamada a la API para iniciar sesión
     });
+
+    useEffect(() => { // Al logearse redirigir a la lista de tareas
+        if (isAuthenticated) navitate('/tasks');
+    }, [isAuthenticated])
 
     return (
         <div className="flex h-[calc(100vh-100px)] items-center justify-center">
