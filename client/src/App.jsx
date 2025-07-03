@@ -12,6 +12,7 @@ import TaskFormPage from './pages/TaskFormPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import { TaskProvider } from './context/TasksContext.jsx'
+import Navbar from './components/Navbar.jsx'
 
 import ProtectedRoute from './ProtectedRoute.jsx'
 
@@ -20,6 +21,7 @@ function App() {
     <AuthProvider>
       <TaskProvider>
         <BrowserRouter>
+          <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/prov" element={<Prov />} />
